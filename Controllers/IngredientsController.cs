@@ -34,6 +34,9 @@ namespace CoquoRev4.Controllers
             }
 
             var ingredient = await _context.Ingredients
+                .Include(i => i.Cooks)
+                .ThenInclude(c => c.Dish)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.IngredientID == id);
             if (ingredient == null)
             {
