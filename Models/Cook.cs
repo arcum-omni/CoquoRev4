@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,9 +12,11 @@ namespace CoquoRev4.Models
         [Key]
         public int CookID { get; set; }
 
-        public Dish DishID { get; set; }
+        //[ForeignKey]
+        public int DishID { get; set; }
 
-        public Ingredient IngredientID { get; set; }
+        //[ForeignKey]
+        public int IngredientID { get; set; }
 
         // Navigation Properties
         public Dish Dish { get; set; }
