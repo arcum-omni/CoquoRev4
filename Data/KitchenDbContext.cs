@@ -6,10 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoquoRev4.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class KitchenDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public KitchenDbContext(DbContextOptions<KitchenDbContext> options) : base(options)
         {
         }
     }
