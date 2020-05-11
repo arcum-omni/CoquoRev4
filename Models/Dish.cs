@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace CoquoRev4.Models
     /// Represents a recipe to cook a single dish,
     /// and is comprised of one or more ingredients.
     /// </summary>
+    [DebuggerDisplay("Dishname: {DishName}")]
     public class Dish
     {
         public int DishID { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace CoquoRev4.Models
     /// Represents a single ingredient,
     /// any number of different ingredients can be in a dish.
     /// </summary>
+    [DebuggerDisplay("IngredientID: {IngredientName}")]
     public class Ingredient
     {
         [Key]

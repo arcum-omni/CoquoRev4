@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CoquoRev4.Models
 {
+    [DebuggerDisplay("CookID: {IngredientID}")]
     public class Cook
     {
         [Key]
