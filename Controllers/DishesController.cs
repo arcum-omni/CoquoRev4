@@ -33,14 +33,17 @@ namespace CoquoRev4.Controllers
                 return NotFound();
             }
 
-            var dish = await _context.Dishes
-                .FirstOrDefaultAsync(m => m.DishID == id);
-            if (dish == null)
+            var singleDish = await _context.Dishes
+                .Where(m => m.DishID == id)
+                .Include(m => m.Cooks)
+                .ThenInclude(c => c.Ingredient)
+                .SingleOrDefaultAsync();
+            if (singleDish == null)
             {
                 return NotFound();
             }
 
-            return View(dish);
+            return View(singleDish);
         }
 
         // GET: Dishes/Create
