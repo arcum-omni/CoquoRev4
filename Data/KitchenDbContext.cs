@@ -16,5 +16,7 @@ namespace CoquoRev4.Data
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Cook> Cooks { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<CoquoRev4.Models.Meal> Meal { get; set; }
+        public DbSet<CoquoRev4.Models.Serve> Serve { get; set; }
     }
 }
