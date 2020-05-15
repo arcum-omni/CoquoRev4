@@ -33,14 +33,26 @@ namespace CoquoRev4.Controllers
                 return NotFound();
             }
 
-            var meal = await _context.Meal
-                .FirstOrDefaultAsync(m => m.MealID == id);
-            if (meal == null)
+            Meal singleMeal = await _context.Meal
+                .Where(m=>m.MealID == id)
+                .Include(s => s.Serves)
+                .ThenInclude(d=>d.Dish)
+                .SingleOrDefaultAsync();
+            if (singleMeal == null)
             {
                 return NotFound();
             }
 
-            return View(meal);
+            return View(singleMeal);
+
+            //var meal = await _context.Meal
+            //    .FirstOrDefaultAsync(m => m.MealID == id);
+            //if (meal == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return View(meal);
         }
 
         // GET: Meals/Create

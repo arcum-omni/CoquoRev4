@@ -34,9 +34,9 @@ namespace CoquoRev4.Controllers
             }
 
             var singleDish = await _context.Dishes
-                .Where(m => m.DishID == id)
-                .Include(m => m.Cooks)
-                .ThenInclude(c => c.Ingredient)
+                .Where(d => d.DishID == id)
+                .Include(c => c.Cooks)
+                .ThenInclude(i => i.Ingredient)
                 .SingleOrDefaultAsync();
             if (singleDish == null)
             {
