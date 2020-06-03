@@ -31,7 +31,8 @@
 				List<string> ingredients = (from a in Model.Cooks
 											select a.Ingredient.IngredientName).ToList();
 
-				foreach (string i in ingredients) {
+				foreach (string i in ingredients)
+				{
 					@i<br />
 				}
 			}
@@ -39,6 +40,24 @@
 
 	</dl>
 </div>
+
+<form asp-action="AddToDish">
+	Add Ingredient <input type="text" />
+
+	Description <input type="text" />
+</form>
+
+<form>
+	<input type="hidden" name="dish-id" value="@Model.DishID" />
+	<select name="ingredient-id">
+		@foreach (Ingredient i in Model.Ingredients)
+		{
+			<option value="@i.IngredientID">@i.IngredientName</option>
+		}
+	</select>
+
+	<input type="submit" />
+</form>
 
 <div>
 	<a asp-action="Edit" asp-route-id="@Model.DishID">Edit</a> |

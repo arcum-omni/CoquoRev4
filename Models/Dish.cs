@@ -22,6 +22,7 @@ namespace CoquoRev4.Models
         public string DishCuisine { get; set; }
 
         // Navigation Property
+        public ICollection<Ingredient> Ingredients { get; set; }
         public ICollection<Cook> Cooks { get; set; }
         public ICollection<Serve> Serves { get; set; }
     }
