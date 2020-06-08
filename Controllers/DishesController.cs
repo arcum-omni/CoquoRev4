@@ -43,6 +43,9 @@ namespace CoquoRev4.Controllers
                 return NotFound();
             }
 
+            singleDish.Ingredients = await _context.Ingredients.ToListAsync();
+
+
             return View(singleDish);
         }
 
