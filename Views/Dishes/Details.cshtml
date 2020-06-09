@@ -27,14 +27,9 @@
 			Ingredient:
 		</dt>
 		<dd class="col-sm-10">
-			@{
-				List<string> ingredients = (from a in Model.Cooks
-											select a.Ingredient.IngredientName).ToList();
-
-				foreach (string i in ingredients)
-				{
-					@i<br />
-				}
+			@foreach (string i in ViewBag.DishIngredients) 
+			{
+				@i<br />
 			}
 		</dd>
 
@@ -51,23 +46,28 @@
 
 @* add ingredient from ingredients to dish*@
 <form>
-	<input type="hidden" name="dish-id" value="@Model.DishID" />
-	<select name="ingredient-id">
-		@foreach (Ingredient i in Model.Ingredients)
-		{
-			<option value="@i.IngredientID">@i.IngredientName</option>
-		}
-	</select>
+    <input type="hidden" name="dish-id" value="@Model.DishID" />
+    @foreach (Ingredient i in ViewBag.Ingredient)
+    {
+        <div>
+			@i.IngredientName
+		</div>
+        <a class="btn btn-secondary text-light" type="submit" asp-action="AddIngredientToDish" asp-controller="Dishes"
+           asp-route-dishId="@Model.DishID" asp-route-ingredientId="@i.IngredientID">
+            Add Ingredient
+        </a><br />
+		<br />
+    }
 
-	@*
-		Psuedo Code:
-		get new ingredient ID from form
-		cook new ingredient into this dish ID
-		refresh page to show DB changes
-	*@
+        @*
+            Psuedo Code:
+            get new ingredient ID from form
+            cook new ingredient into this dish ID
+            refresh page to show DB changes
+        *@
 
-	<input type="submit" />
-</form>
+        @*<input type="submit" />*@
+    </form>
 
 <div>
 	<a asp-action="Edit" asp-route-id="@Model.DishID">Edit</a> |

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CoquoRev4.Data;
 using CoquoRev4.Models;
+using Microsoft.AspNetCore.Routing;
 
 namespace CoquoRev4.Controllers
 {
@@ -45,8 +46,33 @@ namespace CoquoRev4.Controllers
 
             singleDish.Ingredients = await _context.Ingredients.ToListAsync();
 
+            ViewBag.DishIngredients = await (from a in _context.Cooks
+                                         where a.DishID == id
+                                         select a.Ingredient.IngredientName).ToListAsync();
+
+            ViewBag.Ingredient = await (from a in _context.Ingredients
+                                        select a).ToListAsync();
 
             return View(singleDish);
+        }
+
+        public async Task<IActionResult> AddIngredientToDish(int dishId, int ingredientId) 
+        {
+            Cook c = new Cook()
+            {
+                DishID = dishId,
+                IngredientID = ingredientId
+            };
+
+            await AddIngredient(c);
+            return RedirectToAction(nameof(Details), new RouteValueDictionary(new { action = "Details", Id = dishId }));
+        }
+
+        public async Task<Cook> AddIngredient([Bind("CookID,DishID,IngredientID")] Cook c)
+        {
+            _context.Add(c);
+            await _context.SaveChangesAsync();
+            return c;
         }
 
         // GET: Dishes/Create
