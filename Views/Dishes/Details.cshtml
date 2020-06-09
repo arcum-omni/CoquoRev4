@@ -41,12 +41,15 @@
 	</dl>
 </div>
 
-<form asp-action="AddToDish">
+@* add new ingredient to Ingredients*@
+<form asp-action="AddToIngredient">
 	Add Ingredient <input type="text" />
-
-	Description <input type="text" />
 </form>
 
+<br />
+<br />
+
+@* add ingredient from ingredients to dish*@
 <form>
 	<input type="hidden" name="dish-id" value="@Model.DishID" />
 	<select name="ingredient-id">
