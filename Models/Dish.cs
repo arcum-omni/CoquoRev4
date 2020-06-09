@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,12 +14,16 @@ namespace CoquoRev4.Models
     [DebuggerDisplay("Dishname: {DishName}")]
     public class Dish
     {
+        [Display(Name = "Dish ID")]
         public int DishID { get; set; }
 
+        [Display(Name = "Dish Name")]
         public string DishName { get; set; }
 
+        [Display(Name = "Dish Description")]
         public string DishDescription { get; set; }
 
+        [Display(Name = "Dish Cuisine")]
         public string DishCuisine { get; set; }
 
         // Navigation Property

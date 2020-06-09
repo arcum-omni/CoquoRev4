@@ -15,10 +15,13 @@ namespace CoquoRev4.Models
     public class Ingredient
     {
         [Key]
+        [Display(Name = "Ingredient ID")]
         public int IngredientID { get; set; }
 
+        [Display(Name = "Ingredient Name")]
         public string IngredientName { get; set; }
 
+        [Display(Name = "Ingredient Description")]
         public string IngredientDescription { get; set; }
 
         // Navigation Property

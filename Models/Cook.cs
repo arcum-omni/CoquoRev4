@@ -15,9 +15,11 @@ namespace CoquoRev4.Models
         public int CookID { get; set; }
 
         //[ForeignKey]
+        [Display(Name = "Dish ID")]
         public int DishID { get; set; }
 
         //[ForeignKey]
+        [Display(Name = "Ingredient ID")]
         public int IngredientID { get; set; }
 
         // Navigation Properties
