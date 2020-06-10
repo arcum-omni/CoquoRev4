@@ -45,18 +45,19 @@
 </form>
 
 @* TODO: add ingredient objects to dish object*@
+<form asp-controller="Dishes" asp-action="AddIngredientToDish">
+    <input type="hidden" name="dish-id" value="@Model.DishID" />
+    <select name="ingredient-id">
+        @foreach (Ingredient i in ViewBag.Ingredient)
+        {
+            <option value="@i.IngredientID">@i.IngredientName</option>
+        }
+    </select>
+    <input type="submit" value="Add to Dish" />
+
+    <br /><br />
+</form>
 <form>
-		<input type="hidden" name="dish-id" value="@Model.DishID" />
-		<select name="ingredient-id">
-			@foreach (Ingredient i in ViewBag.Ingredient)
-			{
-				<option value="@i.IngredientID">@i.IngredientName</option>
-			}
-		</select>
-		<input type="submit" value="Add to Dish"/>
-
-	<br /><br />
-
 	@*
 		TODO: use a drop down list box instead of individual buttons
 		There could be hundreds of ingredients in the pantry

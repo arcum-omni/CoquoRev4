@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CoquoRev4.Data;
 using CoquoRev4.Models;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Http;
 
 namespace CoquoRev4.Controllers
 {
@@ -56,8 +57,10 @@ namespace CoquoRev4.Controllers
             return View(singleDish);
         }
 
-        public async Task<IActionResult> AddIngredientToDish(int dishId, int ingredientId) 
+        public async Task<IActionResult> AddIngredientToDish(IFormCollection form) 
         {
+            int dishId = Convert.ToInt32(form["dish-id"]);
+            int ingredientId = Convert.ToInt32(form["ingredient-id"]);
             Cook c = new Cook()
             {
                 DishID = dishId,
