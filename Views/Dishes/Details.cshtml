@@ -37,17 +37,15 @@
 </div>
 
 
+<p>- - - Not Functional - - -</p>
 @* TODO: add new ingredient to pantry inventory, ingredient objects*@
 <form asp-action="AddToIngredient">
 	Add Ingredient <input type="text" />
 	<input type="submit" value="Add to Pantry"/>
 </form>
-<br /><br />
-
 
 @* TODO: add ingredient objects to dish object*@
 <form>
-	@*
 		<input type="hidden" name="dish-id" value="@Model.DishID" />
 		<select name="ingredient-id">
 			@foreach (Ingredient i in ViewBag.Ingredient)
@@ -55,13 +53,15 @@
 				<option value="@i.IngredientID">@i.IngredientName</option>
 			}
 		</select>
-		<input type="submit" />
-	*@
+		<input type="submit" value="Add to Dish"/>
+
+	<br /><br />
 
 	@*
 		TODO: use a drop down list box instead of individual buttons
 		There could be hundreds of ingredients in the pantry
 	*@
+	<p>- - - Functional with poor format - - -</p>
 	@foreach (Ingredient i in ViewBag.Ingredient)
 	{
 		<div>
