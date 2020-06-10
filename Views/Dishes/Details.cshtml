@@ -36,38 +36,40 @@
 	</dl>
 </div>
 
-@* add new ingredient to Ingredients*@
+
+@* TODO: add new ingredient to pantry inventory, ingredient objects*@
 <form asp-action="AddToIngredient">
 	Add Ingredient <input type="text" />
+	<input type="submit" />
 </form>
 
-<br />
-<br />
 
-@* add ingredient from ingredients to dish*@
+@* TODO: add ingredient objects to dish object*@
 <form>
-    <input type="hidden" name="dish-id" value="@Model.DishID" />
-    @foreach (Ingredient i in ViewBag.Ingredient)
-    {
-        <div>
+	<input type="hidden" name="dish-id" value="@Model.DishID" />
+	<select name="ingredient-id">
+		@foreach (Ingredient i in ViewBag.Ingredient)
+		{
+			<option value="@i.IngredientID">@i.IngredientName</option>
+		}
+	</select>
+	<input type="submit" asp-action="AddIngredientToDish" asp-controller="Dishes" asp-route-dishId="@Model.DishID" asp-route-ingredientId="@i.ingredientId"/>
+
+	@*
+		TODO: use a drop down list box instead of individual buttons
+		There could be hundreds of ingredients in the pantry
+	
+	@foreach (Ingredient i in ViewBag.Ingredient)
+	{
+		<div>
 			@i.IngredientName
 		</div>
-        <a class="btn btn-secondary text-light" type="submit" asp-action="AddIngredientToDish" asp-controller="Dishes"
-           asp-route-dishId="@Model.DishID" asp-route-ingredientId="@i.IngredientID">
-            Add Ingredient
-        </a><br />
+		<a class="btn btn-secondary text-light" type="submit" asp-action="AddIngredientToDish" asp-controller="Dishes" asp-route-dishId="@Model.DishID" asp-route-ingredientId="@i.IngredientID">
+			Xdd Ingredient
+		</a><br />
 		<br />
-    }
-
-        @*
-            Psuedo Code:
-            get new ingredient ID from form
-            cook new ingredient into this dish ID
-            refresh page to show DB changes
-        *@
-
-        @*<input type="submit" />*@
-    </form>
+	}*@
+</form>
 
 <div>
 	<a asp-action="Edit" asp-route-id="@Model.DishID">Edit</a> |
