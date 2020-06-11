@@ -37,7 +37,6 @@
 </div>
 
 
-@* TODO: add ingredient objects to dish object*@
 <form asp-controller="Dishes" asp-action="AddIngredientToDish">
 	Select Ingredient: <input type="hidden" name="dish-id" value="@Model.DishID" />
 	<select name="ingredient-id">
@@ -49,18 +48,12 @@
 	<input type="submit" value="Add to Dish" />
 
 </form>
-
 <br />
 
-@* TODO: add new ingredient to pantry inventory, ingredient objects*@
-<form asp-controller="Ingredients" asp-action="AddToIngredient">
-	Create New Ingredient: <input type="text" />
-	<input type="submit" value="Add to Pantry"/>
-</form>
+<a asp-controller="Ingredients" asp-action="Create">Create New Ingredient</a>
+<br /><br />
 
-<br />
-
-<div>
-	<a asp-action="Edit" asp-route-id="@Model.DishID">Edit</a> |
-	<a asp-action="Index">Back to List</a>
-</div>
+	<div>
+		<a asp-action="Edit" asp-route-id="@Model.DishID">Edit</a> |
+		<a asp-action="Index">Back to List</a>
+	</div>
