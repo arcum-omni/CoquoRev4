@@ -4,14 +4,16 @@ using CoquoRev4.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CoquoRev4.Data.Migrations
 {
     [DbContext(typeof(KitchenDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200515145319_MealServeDish")]
+    partial class MealServeDish
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,9 +71,6 @@ namespace CoquoRev4.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DishID")
-                        .HasColumnType("int");
-
                     b.Property<string>("IngredientDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -79,8 +78,6 @@ namespace CoquoRev4.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IngredientID");
-
-                    b.HasIndex("DishID");
 
                     b.ToTable("Ingredients");
                 });
@@ -344,13 +341,6 @@ namespace CoquoRev4.Data.Migrations
                         .HasForeignKey("IngredientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("CoquoRev4.Models.Ingredient", b =>
-                {
-                    b.HasOne("CoquoRev4.Models.Dish", null)
-                        .WithMany("Ingredients")
-                        .HasForeignKey("DishID");
                 });
 
             modelBuilder.Entity("CoquoRev4.Models.Serve", b =>

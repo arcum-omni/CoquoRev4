@@ -1,0 +1,49 @@
+﻿@model CoquoRev4.Models.Serve
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Serve</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ServeID" />
+            <div class="form-group">
+                <label asp-for="MealID" class="control-label"></label>
+                <select asp-for="MealID" class="form-control" asp-items="ViewBag.MealID"></select>
+                <span asp-validation-for="MealID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MealName" class="control-label"></label>
+                <input asp-for="MealName" class="form-control" />
+                <span asp-validation-for="MealName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DishID" class="control-label"></label>
+                <select asp-for="DishID" class="form-control" asp-items="ViewBag.DishID"></select>
+                <span asp-validation-for="DishID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DishName" class="control-label"></label>
+                <input asp-for="DishName" class="form-control" />
+                <span asp-validation-for="DishName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

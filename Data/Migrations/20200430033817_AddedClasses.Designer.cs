@@ -4,14 +4,16 @@ using CoquoRev4.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CoquoRev4.Data.Migrations
 {
     [DbContext(typeof(KitchenDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200430033817_AddedClasses")]
+    partial class AddedClasses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,9 +50,6 @@ namespace CoquoRev4.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DishCuisine")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("DishDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -69,9 +68,6 @@ namespace CoquoRev4.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DishID")
-                        .HasColumnType("int");
-
                     b.Property<string>("IngredientDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -80,55 +76,7 @@ namespace CoquoRev4.Data.Migrations
 
                     b.HasKey("IngredientID");
 
-                    b.HasIndex("DishID");
-
                     b.ToTable("Ingredients");
-                });
-
-            modelBuilder.Entity("CoquoRev4.Models.Meal", b =>
-                {
-                    b.Property<int>("MealID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("MealDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MealName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MealID");
-
-                    b.ToTable("Meal");
-                });
-
-            modelBuilder.Entity("CoquoRev4.Models.Serve", b =>
-                {
-                    b.Property<int>("ServeID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("DishID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DishName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MealID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MealName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ServeID");
-
-                    b.HasIndex("DishID");
-
-                    b.HasIndex("MealID");
-
-                    b.ToTable("Serve");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -342,28 +290,6 @@ namespace CoquoRev4.Data.Migrations
                     b.HasOne("CoquoRev4.Models.Ingredient", "Ingredient")
                         .WithMany("Cooks")
                         .HasForeignKey("IngredientID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CoquoRev4.Models.Ingredient", b =>
-                {
-                    b.HasOne("CoquoRev4.Models.Dish", null)
-                        .WithMany("Ingredients")
-                        .HasForeignKey("DishID");
-                });
-
-            modelBuilder.Entity("CoquoRev4.Models.Serve", b =>
-                {
-                    b.HasOne("CoquoRev4.Models.Dish", "Dish")
-                        .WithMany("Serves")
-                        .HasForeignKey("DishID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CoquoRev4.Models.Meal", "Meal")
-                        .WithMany("Serves")
-                        .HasForeignKey("MealID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
